@@ -154,8 +154,6 @@ void TIM2_IRQHandler()
 #ifdef RTOS
 void vTaskRunLedBlink_1(void* pvParametersLed_1)
 {
-	TickType_t xDelay1000ms = pdMS_TO_TICKS( 10 );
-
 	for(;;)
 	{
 		GPIO_Toggle_Bit(GPIO_PORT_D, GPIO_Pin_12);
@@ -165,12 +163,12 @@ void vTaskRunLedBlink_1(void* pvParametersLed_1)
 
 		}
 
-//		vTaskDelay( xDelay1000ms );
 	}
 }
 
 void vTaskRunLedBlink_2(void* pvParametersLed_2)
 {
+
 	for(;;)
 	{
 		GPIO_Toggle_Bit(GPIO_PORT_D, GPIO_Pin_13);
@@ -179,6 +177,7 @@ void vTaskRunLedBlink_2(void* pvParametersLed_2)
 		{
 
 		}
+
 	}
 }
 
@@ -290,10 +289,12 @@ int main(void)
 
 #ifdef RTOS
 	vPortDefineHeapRegions(xHeapRegions);
-	xTaskCreate( vTaskRunLedBlink_1, "Task 1", 1000, NULL, 2, NULL );
+
+
+	xTaskCreate( vTaskRunLedBlink_1, "Task 1", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
 
 	/* Create the other task in exactly the same way and at the same priority. */
-	xTaskCreate( vTaskRunLedBlink_2, "Task 2", 1000, NULL, 2, NULL );
+	xTaskCreate( vTaskRunLedBlink_2, "Task 2", 1000, NULL, configMAX_PRIORITIES - 1, NULL );
 
 	/* Start the scheduler so the tasks start executing. */
 	vTaskStartScheduler();

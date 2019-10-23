@@ -92,6 +92,9 @@
 #define SystemCoreClock 		125000000
 
 #define configUSE_PREEMPTION   1
+/*Vinh Start*/
+#define configUSE_TIME_SLICING	1
+/*Vinh End*/
 #define configUSE_IDLE_HOOK    1
 #define configUSE_TICK_HOOK    1
 #define configCPU_CLOCK_HZ    ( SystemCoreClock )
@@ -166,6 +169,6 @@
    standard names. */
 #define vPortSVCHandler SVC_Handler
 #define xPortPendSVHandler PendSV_Handler
-//#define xPortSysTickHandler SysTick_Handler
+#define xPortSysTickHandler SysTick_Handler
 
 #endif /* FREERTOS_CONFIG_H */

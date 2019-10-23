@@ -69,7 +69,9 @@ void SysTick_Interrupt(void)
 	NVIC_Init(&NVIC_InitStruct);
 }
 
+#ifndef RTOS
 void SysTick_Handler()
 {
 	TimeTick_Decrement();
 }
+#endif

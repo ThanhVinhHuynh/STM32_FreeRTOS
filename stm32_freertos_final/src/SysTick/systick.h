@@ -10,6 +10,7 @@
 
 #include "../Core/core_cm4.h"
 #include "../Core/misc.h"
+#include "../Common/build_config.h"
 
 typedef struct
 {
@@ -48,7 +49,8 @@ void 	TimeTick_Decrement(void);
 void 	SysTick_Interrupt(void);
 
 void 	SysTick_Interrupt_Status(SysTick_Type* sys, uint32_t interrupt_status);
-
+#ifndef RTOS
 void 	SysTick_Handler();
+#endif
 
 #endif /* SYSTICK_SYSTICK_H_ */
